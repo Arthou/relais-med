@@ -4,7 +4,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJHABTENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
@@ -13,7 +13,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJACBRENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
@@ -22,7 +22,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJAQGAENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
@@ -48,7 +48,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJEDCCENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
@@ -57,7 +57,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJCNDCENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
@@ -66,7 +66,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJCJBTENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
@@ -75,7 +75,7 @@ const agentes = [
     pontos: [
       {
         ponto: "RJDPNPENTR101",
-        descricao: "",
+        descricao: "⠀",
       },
     ],
   },
