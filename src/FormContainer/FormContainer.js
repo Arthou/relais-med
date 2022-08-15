@@ -20,7 +20,7 @@ const FormContainer = () => {
         <div className="flex justify-content-center">
           <img src={logoRelais} className="logo" alt="Relais Energia" />
         </div>
-        <div className="flex flex-column gap-6 px-4">
+        <div className="flex flex-column gap-5 px-4">
           {showDetailedForm ? (
             <SimpleMeasurementForm />
           ) : (

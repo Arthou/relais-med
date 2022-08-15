@@ -14,6 +14,7 @@ const DetailedMeasurementForm = ({ onChange }) => {
   const [selectedAgente, setSelectedAgente] = useState(null);
   const [selectedPonto, setSelectedPonto] = useState(null);
   const [values, setValues] = useState({});
+  const [descricao, setDescricao] = useState("⠀");
 
   const onAgenteChange = (e) => {
     const obj = { ...values };
@@ -22,10 +23,12 @@ const DetailedMeasurementForm = ({ onChange }) => {
     onChange(obj);
     setSelectedAgente(e.value);
     setPontos(e.value.pontos);
+    setDescricao("⠀");
   };
 
   const onPontoChange = (e) => {
     setSelectedPonto(e.value);
+    setDescricao(e.value.descricao);
   };
 
   return (
@@ -73,7 +76,7 @@ const DetailedMeasurementForm = ({ onChange }) => {
             />
           </div>
         </div>
-        <div className="flex flex-row pt-1 justify-content-center">
+        <div className="flex flex-column pt-1 justify-content-center">
           <div className="flex flex-1 flex-column gap-2">
             <label htmlFor="monthpicker">Agente</label>
             <Dropdown
@@ -86,7 +89,7 @@ const DetailedMeasurementForm = ({ onChange }) => {
             />
           </div>
         </div>
-        <div className="flex flex-row justify-content-center">
+        <div className="flex flex-column gap-1 justify-content-center">
           <div className="flex flex-1 flex-column gap-2">
             <label htmlFor="monthpicker">Ponto de Medição</label>
             <Dropdown
@@ -96,6 +99,9 @@ const DetailedMeasurementForm = ({ onChange }) => {
               optionLabel="ponto"
               placeholder="Selecione o Ponto"
             />
+          </div>
+          <div className="flex font-bold flex-row justify-content-end">
+            <label htmlFor="">{descricao}</label>
           </div>
         </div>
       </div>
