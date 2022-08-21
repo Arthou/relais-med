@@ -1,26 +1,29 @@
 import { Calendar } from "primereact/calendar";
-import React, { useEffect, useState } from "react";
-import getPreviousMonth from "./../utils/dateTime";
+import React, { useState } from "react";
+import firstDayPreviousMonth from "./../utils/dateTime";
 
-const SimpleMeasurementForm = () => {
-  const [date, setDate] = useState(getPreviousMonth());
+const SimpleMeasurementForm = ({ onChange }) => {
+  //const [Date, setDate] = useState(getPreviousMonth());
+  const [values, setValues] = useState({
+    date: firstDayPreviousMonth(),
+  });
 
-  useEffect(() => {
-    //var options = { year: "numeric", month: "numeric" };
-    //console.log(new Date(date).toLocaleDateString([], options));
-    //var date = new Date();
-    //setDate();
-  }, []);
+  const onFormChange = (e) => {
+    const obj = { ...values };
+    obj[e.target.id] = e.value;
+    setValues(obj);
+    onChange(obj);
+  };
 
   return (
     <>
-      <div className="flex flex-column gap-2 px-5">
+      <div className="flex flex-column gap-2 px-5 mb-5">
         <label htmlFor="monthpicker">Mês de Medição</label>
         <Calendar
           className="flex-1"
-          id="monthpicker"
-          value={date}
-          onChange={(e) => setDate(e.value)}
+          id="date"
+          value={values.date}
+          onChange={(e) => onFormChange(e)}
           view="month"
           dateFormat="mm/yy"
         />

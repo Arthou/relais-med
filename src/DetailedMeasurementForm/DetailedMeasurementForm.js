@@ -1,107 +1,125 @@
 import { Calendar } from "primereact/calendar";
-import React, { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
+import React, { useEffect, useState } from "react";
 import agentes from "../data/db";
-import getPreviousMonth from "./../utils/dateTime";
+import firstDayPreviousMonth, {
+  endHour,
+  lastDayPreviousMonth,
+  startHour,
+} from "./../utils/dateTime";
 // import logoRelais from "./logoRelais.png";
 
 const DetailedMeasurementForm = ({ onChange }) => {
-  const [dataInicial, setDataInicial] = useState(null);
-  const [dataFinal, setDataFinal] = useState(null);
-  const [horarioInicial, setHorarioInicial] = useState(null);
-  const [horarioFinal, setHorarioFinal] = useState(null);
   const [pontos, setPontos] = useState([]);
-  const [selectedAgente, setSelectedAgente] = useState(null);
-  const [selectedPonto, setSelectedPonto] = useState(null);
-  const [values, setValues] = useState({});
-  const [descricao, setDescricao] = useState("⠀");
+  const [values, setValues] = useState({
+    dataInicial: firstDayPreviousMonth(),
+    dataFinal: lastDayPreviousMonth(),
+    horarioInicial: startHour(),
+    horarioFinal: endHour(),
+    agente: null,
+    ponto: null,
+  });
 
-  const onAgenteChange = (e) => {
+  const onFormChange = (e) => {
     const obj = { ...values };
     obj[e.target.id] = e.value;
     setValues(obj);
     onChange(obj);
-    setSelectedAgente(e.value);
-    setPontos(e.value.pontos);
-    setDescricao("⠀");
+    console.log(values.horarioInicial);
   };
 
-  const onPontoChange = (e) => {
-    setSelectedPonto(e.value);
-    setDescricao(e.value.descricao);
-  };
+  useEffect(() => {
+    if (values.agente) {
+      setPontos(values.agente.pontos);
+      setValues({ ...values, ponto: null });
+    }
+  }, [values.agente]);
 
   return (
     <>
-      <div className="flex flex-column gap-4">
+      <div className="flex flex-column gap-5">
         <div className="flex flex-row gap-3 justify-content-center">
           <div className="flex flex-1 flex-column gap-2">
-            <label htmlFor="monthpicker">Data Inicial</label>
-            <Calendar
-              dateFormat="dd/mm/yy"
-              id="basic"
-              value={dataInicial}
-              onChange={(e) => setDataInicial(e.value)}
-            />
+            <span className="p-float-label">
+              <Calendar
+                dateFormat="dd/mm/yy"
+                id="dataInicial"
+                value={values.dataInicial}
+                onChange={(e) => onFormChange(e)}
+              />
+              <label htmlFor="monthpicker">Data Inicial</label>
+            </span>
           </div>
           <div className="flex flex-1 flex-column gap-2">
-            <label htmlFor="monthpicker">Data Final</label>
-            <Calendar
-              dateFormat="dd/mm/yy"
-              id="basic"
-              value={dataFinal}
-              onChange={(e) => setDataFinal(e.value)}
-            />
+            <span className="p-float-label">
+              <Calendar
+                dateFormat="dd/mm/yy"
+                id="dataFinal"
+                value={values.dataFinal}
+                onChange={(e) => onFormChange(e)}
+              />
+              <label htmlFor="dataFinal">Data Final</label>
+            </span>
           </div>
         </div>
         <div className="flex flex-row gap-3 justify-content-center">
           <div className="flex flex-1 flex-column gap-2">
-            <label htmlFor="monthpicker">Horário Inicial</label>
-            <Calendar
-              id="time24"
-              value={horarioInicial}
-              onChange={(e) => setHorarioInicial(e.value)}
-              timeOnly
-              hourFormat="24"
-            />
+            <span className="p-float-label">
+              <Calendar
+                id="horarioInicial"
+                value={values.horarioInicial}
+                onChange={(e) => onFormChange(e)}
+                timeOnly
+                hourFormat="24"
+              />
+              <label htmlFor="monthpicker">Horário Inicial</label>
+            </span>
           </div>
           <div className="flex flex-1 flex-column gap-2">
-            <label htmlFor="monthpicker">Horário Final</label>
-            <Calendar
-              id="time24"
-              value={horarioFinal}
-              onChange={(e) => setHorarioFinal(e.value)}
-              timeOnly
-              hourFormat="24"
-            />
+            <span className="p-float-label">
+              <Calendar
+                id="horarioFinal"
+                value={values.horarioFinal}
+                onChange={(e) => onFormChange(e)}
+                timeOnly
+                hourFormat="24"
+              />
+              <label htmlFor="monthpicker">Horário Final</label>
+            </span>
           </div>
         </div>
-        <div className="flex flex-column pt-1 justify-content-center">
-          <div className="flex flex-1 flex-column gap-2">
-            <label htmlFor="monthpicker">Agente</label>
+        <div className="flex flex-column justify-content-center">
+          <span className="p-float-label">
             <Dropdown
               id="agente"
-              value={selectedAgente}
+              className="w-full"
+              value={values.agente}
               options={agentes}
-              onChange={onAgenteChange}
+              onChange={(e) => onFormChange(e)}
               optionLabel="agente"
-              placeholder="Selecione o Agente"
             />
-          </div>
+            <label htmlFor="agente">Agente</label>
+          </span>
         </div>
         <div className="flex flex-column gap-1 justify-content-center">
           <div className="flex flex-1 flex-column gap-2">
-            <label htmlFor="monthpicker">Ponto de Medição</label>
-            <Dropdown
-              value={selectedPonto}
-              options={pontos}
-              onChange={onPontoChange}
-              optionLabel="ponto"
-              placeholder="Selecione o Ponto"
-            />
+            <span className="p-float-label">
+              <Dropdown
+                id="ponto"
+                className="w-full"
+                value={values.ponto}
+                options={pontos}
+                onChange={(e) => onFormChange(e)}
+                optionLabel="ponto"
+              />
+              <label htmlFor="monthpicker">Ponto de Medição</label>
+            </span>
           </div>
-          <div className="flex font-bold flex-row justify-content-end">
-            <label htmlFor="">{descricao}</label>
+          <div
+            className="flex font-bold flex-row justify-content-end"
+            style={{ minHeight: "2rem" }}
+          >
+            {values.ponto && values.ponto.descricao}
           </div>
         </div>
       </div>
