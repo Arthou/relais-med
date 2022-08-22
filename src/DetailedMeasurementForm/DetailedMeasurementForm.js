@@ -16,8 +16,8 @@ const DetailedMeasurementForm = ({ onChange }) => {
     dataFinal: lastDayPreviousMonth(),
     horarioInicial: startHour(),
     horarioFinal: endHour(),
-    agente: null,
-    ponto: null,
+    agente: "",
+    ponto: "",
   });
 
   const onFormChange = (e) => {
@@ -34,6 +34,10 @@ const DetailedMeasurementForm = ({ onChange }) => {
       setValues({ ...values, ponto: null });
     }
   }, [values.agente]);
+
+  useEffect(() => {
+    onChange(values);
+  }, []);
 
   return (
     <>

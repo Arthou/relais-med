@@ -1,6 +1,8 @@
 const agentes = [
   {
     agente: "Américas Barra",
+    codigoPerfil: "82044",
+    agenteCCEE: "HOTEL AMERICAS BARRA",
     pontos: [
       {
         ponto: "RJHABTENTR101",
@@ -10,6 +12,8 @@ const agentes = [
   },
   {
     agente: "Américas Copacabana",
+    codigoPerfil: "84777",
+    agenteCCEE: "AMERICAS COPACABANA",
     pontos: [
       {
         ponto: "RJACBRENTR101",
@@ -19,6 +23,8 @@ const agentes = [
   },
   {
     agente: "Aquario",
+    codigoPerfil: "82523",
+    agenteCCEE: "AQUARIO-RIO",
     pontos: [
       {
         ponto: "RJAQGAENTR101",
@@ -28,6 +34,8 @@ const agentes = [
   },
   {
     agente: "Brisa",
+    codigoPerfil: "71112",
+    agenteCCEE: "BRISA",
     pontos: [
       {
         ponto: "RJBRIBENTR101",
@@ -45,6 +53,8 @@ const agentes = [
   },
   {
     agente: "Ed. Cidade do Carmo",
+    codigoPerfil: "31860",
+    agenteCCEE: "EDIFICIO CIDADE DO CARMO",
     pontos: [
       {
         ponto: "RJEDCCENTR101",
@@ -54,6 +64,8 @@ const agentes = [
   },
   {
     agente: "Ed. Avenida Central",
+    codigoPerfil: "85896",
+    agenteCCEE: "EDIFICIO AVENIDA CENTRAL",
     pontos: [
       {
         ponto: "RJCNDCENTR101",
@@ -63,6 +75,8 @@ const agentes = [
   },
   {
     agente: "Condomínio Jardim",
+    codigoPerfil: "82222",
+    agenteCCEE: "CONDOMINIO JARDIM BARRA TIJUCA",
     pontos: [
       {
         ponto: "RJCJBTENTR101",
@@ -72,6 +86,8 @@ const agentes = [
   },
   {
     agente: "Ed. Rodolpho De Paoli",
+    codigoPerfil: "91905",
+    agenteCCEE: "DE PAOLI",
     pontos: [
       {
         ponto: "RJDPNPENTR101",
@@ -81,6 +97,8 @@ const agentes = [
   },
   {
     agente: "Downtown",
+    codigoPerfil: "70544",
+    agenteCCEE: "DOWNTOWN",
     pontos: [
       {
         ponto: "RJDOBTALBL106",
@@ -110,6 +128,8 @@ const agentes = [
   },
   {
     agente: "Iate Clube",
+    codigoPerfil: "84772",
+    agenteCCEE: "ICRJ",
     pontos: [
       {
         ponto: "RJICRJENTR101",
@@ -127,6 +147,8 @@ const agentes = [
   },
   {
     agente: "Independência",
+    codigoPerfil: "83662",
+    agenteCCEE: "INDEPENDENCIA ADM",
     pontos: [
       {
         ponto: "RJIDCBENTR101",
@@ -144,6 +166,8 @@ const agentes = [
   },
   {
     agente: "Link",
+    codigoPerfil: "86321",
+    agenteCCEE: "LINK",
     pontos: [
       {
         ponto: "RJLYASENTR101",
@@ -157,6 +181,8 @@ const agentes = [
   },
   {
     agente: "Locar",
+    codigoPerfil: "92533",
+    agenteCCEE: "LOCAR",
     pontos: [
       {
         ponto: "RJLOPIENTR101",
@@ -170,6 +196,8 @@ const agentes = [
   },
   {
     agente: "SRPlast",
+    codigoPerfil: "86592",
+    agenteCCEE: "SRPLAST",
     pontos: [
       {
         ponto: "RJSRM2ENTR101",

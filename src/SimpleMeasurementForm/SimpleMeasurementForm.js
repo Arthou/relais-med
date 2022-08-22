@@ -1,5 +1,5 @@
 import { Calendar } from "primereact/calendar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import firstDayPreviousMonth from "./../utils/dateTime";
 
 const SimpleMeasurementForm = ({ onChange }) => {
@@ -14,6 +14,10 @@ const SimpleMeasurementForm = ({ onChange }) => {
     setValues(obj);
     onChange(obj);
   };
+
+  useEffect(() => {
+    onChange(values);
+  }, []);
 
   return (
     <>

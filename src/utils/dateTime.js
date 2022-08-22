@@ -5,13 +5,16 @@ const firstDayPreviousMonth = () => {
   return new Date(year, month === 1 ? 11 : month - 1, 1);
 };
 
-//const lastDayPreviousMonth
-
 export const lastDayPreviousMonth = () => {
   var date = new Date(); // current date
   date.setDate(1); // going to 1st of the month
   date.setHours(-1); // going to last hour before this date even started.
   return date;
+};
+
+export const lastDayGivenMonth = (date) => {
+  const newDate = new Date(date.getFullYear(), date.getMonth(), 0);
+  return newDate;
 };
 
 export const startHour = () => {
@@ -20,6 +23,25 @@ export const startHour = () => {
 
 export const endHour = () => {
   return new Date(2022, 1, 1, 0, 0, 0);
+};
+
+export const hourString = (date) => {
+  return (
+    date.getHours().toString().padStart(2, 0) +
+    ":" +
+    date.getMinutes().toString().padStart(2, 0) +
+    ":00"
+  );
+};
+
+export const dateString = (date) => {
+  return (
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() + 1).toString().padStart(2, 0) +
+    "-" +
+    date.getDate().toString().padStart(2, 0)
+  );
 };
 
 export default firstDayPreviousMonth;

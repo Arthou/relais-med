@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import agentes from "../data/db";
 import DetailedMeasurementForm from "../DetailedMeasurementForm/DetailedMeasurementForm";
 import SimpleMeasurementForm from "../SimpleMeasurementForm/SimpleMeasurementForm";
+import { dateString, hourString, lastDayGivenMonth } from "../utils/dateTime";
 import logoRelais from "./../logoRelais.png";
 
 const FormContainer = () => {
@@ -19,14 +20,16 @@ const FormContainer = () => {
     setSimpleValues(values);
   };
 
-  const fetchData = () => {
+  const fetchData = (isFinal) => {
     fetch("https://localhost:5000/", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: showDetailedForm ? postBody(true) : postBody(false),
+      body: showDetailedForm
+        ? postBodySimple(isFinal)
+        : postBodyDetailed(isFinal),
     })
       .then((response) => {
         if (response.ok) {
@@ -39,22 +42,54 @@ const FormContainer = () => {
       });
   };
 
-  const postBody = (simple) => {
-    let body;
-    if (simple) {
-      //var jason = JSON.parse(agentes);
-      console.log(agentes);
-      body = JSON.stringify({
-        parameterOne: "something",
-        parameterTwo: agentes.map((x) => x.agente),
-      });
-    } else {
-      body = JSON.stringify({
-        parameterOne: "something",
-        parameterTwo: [detailedValues.agente.agente],
-      });
-    }
+  const postBodySimple = (isFinal) => {
+    console.log(simpleValues);
+    const startDate = dateString(simpleValues.date);
+    const endDate = dateString(
+      lastDayGivenMonth(
+        new Date(
+          simpleValues.date.getFullYear(),
+          simpleValues.date.getMonth() + 2,
+          0
+        )
+      )
+    );
+    const body = JSON.stringify({
+      startDate: startDate + "T01:00:00",
+      endDate: endDate + "T00:00:00",
+      tipoMedicao: isFinal ? "FINAL" : "FALTANTE",
+      infoAgente: agentes, //agentes.map((x) => x.pontos),
+      simple: "true",
+    });
+    console.log(body);
+    return body;
+  };
+
+  const postBodyDetailed = (isFinal) => {
     console.log(detailedValues);
+    const startDate = dateString(detailedValues.dataInicial);
+    const endDate = dateString(detailedValues.dataFinal);
+    const startHour = hourString(detailedValues.horarioInicial);
+    const endHour = hourString(detailedValues.horarioFinal);
+    const body = JSON.stringify({
+      startDate: startDate + "T" + startHour,
+      endDate: endDate + "T" + endHour,
+      tipoMedicao: isFinal ? "FINAL" : "FALTANTE",
+      infoAgente: [
+        {
+          agente: detailedValues.agente.agente,
+          codigoPerfil: detailedValues.agente.codigoPerfil,
+          agenteCCEE: detailedValues.agente.agenteCCEE,
+          pontos: [
+            {
+              ponto: detailedValues.ponto.ponto,
+              descricao: detailedValues.ponto.descricao,
+            },
+          ],
+        },
+      ], //agentes.map((x) => x.pontos),
+      simple: "false",
+    });
     console.log(body);
     return body;
   };
@@ -74,11 +109,12 @@ const FormContainer = () => {
           <div className="flex flex-row gap-4 justify-content-center">
             <Button
               label="Baixar"
-              onClick={fetchData}
+              onClick={() => fetchData(true)}
               className="p-button-outlined p-button-rounded"
             />
             <Button
               label="Horas Faltantes"
+              onClick={() => fetchData(false)}
               className="p-button-outlined p-button-rounded p-button-danger"
             />
           </div>
