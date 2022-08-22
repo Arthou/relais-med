@@ -13,7 +13,7 @@ const FormContainer = () => {
   const [simpleValues, setSimpleValues] = useState(null);
 
   const onDetailedFormChange = (values) => {
-    setDetailedValues(values);
+    setDetailedValues(values);    
   };
 
   const onSimpleFormChange = (values) => {
@@ -43,6 +43,7 @@ const FormContainer = () => {
   };
 
   const postBodySimple = (isFinal) => {
+    console.log(simpleValues);
     console.log(simpleValues);
     const startDate = dateString(simpleValues.date);
     const endDate = dateString(
