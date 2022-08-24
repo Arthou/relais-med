@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import agentes from "../data/db";
 import firstDayPreviousMonth, {
   endHour,
-  lastDayPreviousMonth,
+  midnightPreviousToCurrentMonth,
   startHour,
 } from "./../utils/dateTime";
 // import logoRelais from "./logoRelais.png";
@@ -13,7 +13,7 @@ const DetailedMeasurementForm = ({ onChange }) => {
   const [pontos, setPontos] = useState([]);
   const [values, setValues] = useState({
     dataInicial: firstDayPreviousMonth(),
-    dataFinal: lastDayPreviousMonth(),
+    dataFinal: midnightPreviousToCurrentMonth(),
     horarioInicial: startHour(),
     horarioFinal: endHour(),
     agente: "",

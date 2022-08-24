@@ -1,16 +1,16 @@
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import agentes from "../data/db";
 import DetailedMeasurementForm from "../DetailedMeasurementForm/DetailedMeasurementForm";
 import SimpleMeasurementForm from "../SimpleMeasurementForm/SimpleMeasurementForm";
-import { dateString, hourString, lastDayGivenMonth } from "../utils/dateTime";
+import { dateString, firstDayNextGivenMonth, hourString, lastDayGivenMonth } from "../utils/dateTime";
 import logoRelais from "./../logoRelais.png";
 
 const FormContainer = () => {
   const [showDetailedForm, setShowDetailedForm] = useState(true);
-  const [detailedValues, setDetailedValues] = useState(null);
-  const [simpleValues, setSimpleValues] = useState(null);
+  const [detailedValues, setDetailedValues] = useState('');
+  const [simpleValues, setSimpleValues] = useState('');
 
   const onDetailedFormChange = (values) => {
     setDetailedValues(values);    
@@ -21,7 +21,7 @@ const FormContainer = () => {
   };
 
   const fetchData = (isFinal) => {
-    fetch("https://localhost:5000/", {
+    fetch("http://localhost:5000/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -33,28 +33,37 @@ const FormContainer = () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.blob();
         }
         throw new Error("Something went wrong");
       })
+      .then((blob) => {
+        const href = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = href;
+        showDetailedForm 
+          ? link.setAttribute('download', 'Medições.zip') 
+          : link.setAttribute('download', "MED_" + detailedValues.ponto.fileName + "_" + 
+          (detailedValues.dataInicial.getFullYear().toString()) + "_" + 
+          (detailedValues.dataInicial.getMonth() + 1).toString().padStart(2, 0)); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const setFileName = () => {
+    const fileNameXLSX = "";
+    return fileNameXLSX;
+  };
+
   const postBodySimple = (isFinal) => {
     console.log(simpleValues);
-    console.log(simpleValues);
     const startDate = dateString(simpleValues.date);
-    const endDate = dateString(
-      lastDayGivenMonth(
-        new Date(
-          simpleValues.date.getFullYear(),
-          simpleValues.date.getMonth() + 2,
-          0
-        )
-      )
-    );
+    const endDate = dateString(firstDayNextGivenMonth(simpleValues.date));
     const body = JSON.stringify({
       startDate: startDate + "T01:00:00",
       endDate: endDate + "T00:00:00",
@@ -85,6 +94,7 @@ const FormContainer = () => {
             {
               ponto: detailedValues.ponto.ponto,
               descricao: detailedValues.ponto.descricao,
+              fileName: detailedValues.ponto.fileName,
             },
           ],
         },
@@ -110,7 +120,7 @@ const FormContainer = () => {
           <div className="flex flex-row gap-4 justify-content-center">
             <Button
               label="Baixar"
-              onClick={() => fetchData(true)}
+              onClick= {() => fetchData(true)}
               className="p-button-outlined p-button-rounded"
             />
             <Button

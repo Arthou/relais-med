@@ -5,11 +5,20 @@ const firstDayPreviousMonth = () => {
   return new Date(year, month === 1 ? 11 : month - 1, 1);
 };
 
-export const lastDayPreviousMonth = () => {
+export const midnightPreviousToCurrentMonth = () => {
   var date = new Date(); // current date
   date.setDate(1); // going to 1st of the month
-  date.setHours(-1); // going to last hour before this date even started.
+  date.setHours(0);
+  //date.setHours(-1); // going to last hour before this date even started.
   return date;
+};
+
+export const firstDayNextGivenMonth = (date) => {
+  var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+  newDate.setMonth(date.getMonth()+1);
+  newDate.setDate(1);
+  //newDate.setHours(0);
+  return newDate;
 };
 
 export const lastDayGivenMonth = (date) => {
