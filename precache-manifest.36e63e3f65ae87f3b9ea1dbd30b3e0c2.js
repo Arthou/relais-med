@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "94d01501171a70b4cfef",
-    "url": "/relais-med/static/css/main.b9d5fe83.chunk.css"
+    "revision": "5d7d2c68e3d0ed359d60",
+    "url": "/relais-med/static/css/main.1bd814cd.chunk.css"
   },
   {
-    "revision": "94d01501171a70b4cfef",
-    "url": "/relais-med/static/js/main.8920e84a.chunk.js"
+    "revision": "5d7d2c68e3d0ed359d60",
+    "url": "/relais-med/static/js/main.2eda534b.chunk.js"
   },
   {
     "revision": "938b3d5c5e1ed3279338",
     "url": "/relais-med/static/js/runtime~main.5a70e5e6.js"
   },
   {
-    "revision": "fbc8a83328c7714466f9",
-    "url": "/relais-med/static/css/2.2b764b2c.chunk.css"
+    "revision": "fc5ce5d15c84126b3e06",
+    "url": "/relais-med/static/css/2.25de789b.chunk.css"
   },
   {
-    "revision": "fbc8a83328c7714466f9",
-    "url": "/relais-med/static/js/2.fba0dde3.chunk.js"
+    "revision": "fc5ce5d15c84126b3e06",
+    "url": "/relais-med/static/js/2.09da6338.chunk.js"
   },
   {
     "revision": "b72ddc5ecd0bd91a4dbbf8ce892c5698",
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/relais-med/static/media/primeicons.64b5d470.svg"
   },
   {
-    "revision": "18a9449b8903e3e8c01121801c7ba4cc",
+    "revision": "bc814faf3e8afb9394f22185229cf397",
     "url": "/relais-med/index.html"
   }
 ];
