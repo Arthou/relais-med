@@ -249,6 +249,23 @@ const agentes = [
       },
     ],
   },
+  {
+    agente: "Eliel",
+    codigoPerfil: "38052",
+    agenteCCEE: "ELIEL",
+    pontos: [
+      {
+        ponto: "RJELPSENTR101",
+        descricao: "Prédio Novo",
+        fileName: "ELIEL_ELIELPN",
+      },
+      {
+        ponto: "RJEFDLENTR101",
+        descricao: "Prédio Velho",
+        fileName: "ELIEL_ELIELPV",
+      },
+    ],
+  },
 ];
 
 export default agentes;

@@ -11,6 +11,7 @@ const FormContainer = () => {
   const [showDetailedForm, setShowDetailedForm] = useState(true);
   const [detailedValues, setDetailedValues] = useState('');
   const [simpleValues, setSimpleValues] = useState('');
+  const [fetching, setFetching] = useState(false);
 
   const onDetailedFormChange = (values) => {
     setDetailedValues(values);    
@@ -21,6 +22,7 @@ const FormContainer = () => {
   };
 
   const fetchData = (isFinal) => {
+    setFetching(true);
     fetch("http://localhost:5000/", {
       method: "POST",
       headers: {
@@ -41,23 +43,24 @@ const FormContainer = () => {
         const href = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = href;
-        showDetailedForm 
-          ? link.setAttribute('download', 'Medições.zip') 
-          : link.setAttribute('download', "MED_" + detailedValues.ponto.fileName + "_" + 
-          (detailedValues.dataInicial.getFullYear().toString()) + "_" + 
-          (detailedValues.dataInicial.getMonth() + 1).toString().padStart(2, 0)); //or any other extension
+        if (isFinal == true) {
+          showDetailedForm 
+            ? link.setAttribute('download', 'Medições.zip') 
+            : link.setAttribute('download', "MED_" + detailedValues.ponto.fileName + "_" + 
+            (detailedValues.dataInicial.getFullYear().toString()) + "_" + 
+            (detailedValues.dataInicial.getMonth() + 1).toString().padStart(2, 0) + ".xlsx");}
+        else {
+          link.setAttribute('download', 'HORAS FALTANTES.xlsx') 
+        };
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        setFetching(false);
     })
       .catch((error) => {
         console.log(error);
+        setFetching(false);
       });
-  };
-
-  const setFileName = () => {
-    const fileNameXLSX = "";
-    return fileNameXLSX;
   };
 
   const postBodySimple = (isFinal) => {
@@ -67,7 +70,7 @@ const FormContainer = () => {
     const body = JSON.stringify({
       startDate: startDate + "T01:00:00",
       endDate: endDate + "T00:00:00",
-      tipoMedicao: isFinal ? "FINAL" : "FALTANTE",
+      tipoMedicao: isFinal ? "FINAL" : "FALTANTES",
       infoAgente: agentes, //agentes.map((x) => x.pontos),
       simple: "true",
     });
@@ -84,7 +87,7 @@ const FormContainer = () => {
     const body = JSON.stringify({
       startDate: startDate + "T" + startHour,
       endDate: endDate + "T" + endHour,
-      tipoMedicao: isFinal ? "FINAL" : "FALTANTE",
+      tipoMedicao: isFinal ? "FINAL" : "FALTANTES",
       infoAgente: [
         {
           agente: detailedValues.agente.agente,
@@ -118,13 +121,15 @@ const FormContainer = () => {
             <DetailedMeasurementForm onChange={onDetailedFormChange} />
           )}
           <div className="flex flex-row gap-4 justify-content-center">
-            <Button
-              label="Baixar"
-              onClick= {() => fetchData(true)}
+            <Button disabled={fetching}
+              label={!fetching && "Baixar"}
+              icon={fetching && "pi pi-spin pi-spinner"}
+              onClick={() => fetchData(true)}
               className="p-button-outlined p-button-rounded"
             />
-            <Button
-              label="Horas Faltantes"
+            <Button disabled={fetching}
+              label={!fetching && "Horas Faltantes"}
+              icon={fetching && "pi pi-spin pi-spinner"}
               onClick={() => fetchData(false)}
               className="p-button-outlined p-button-rounded p-button-danger"
             />
