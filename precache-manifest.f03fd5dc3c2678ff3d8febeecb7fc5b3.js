@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "f9c3b8170bf3cea3b411",
+    "revision": "f750e7291b3253c8c474",
     "url": "/relais-med/static/css/main.1bd814cd.chunk.css"
   },
   {
-    "revision": "f9c3b8170bf3cea3b411",
-    "url": "/relais-med/static/js/main.67e8287d.chunk.js"
+    "revision": "f750e7291b3253c8c474",
+    "url": "/relais-med/static/js/main.a81c62e0.chunk.js"
   },
   {
     "revision": "938b3d5c5e1ed3279338",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/relais-med/static/media/logoRelais.b72ddc5e.png"
   },
   {
-    "revision": "e01fd4133bac49cd2ea07ad6f7c45695",
-    "url": "/relais-med/static/media/primeicons.e01fd413.eot"
-  },
-  {
     "revision": "943c3597cd33be56d53df0d1982fa8ff",
     "url": "/relais-med/static/media/primeicons.943c3597.woff"
+  },
+  {
+    "revision": "e01fd4133bac49cd2ea07ad6f7c45695",
+    "url": "/relais-med/static/media/primeicons.e01fd413.eot"
   },
   {
     "revision": "b29a888ff7f07091c7e08eb0d991e221",
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/relais-med/static/media/primeicons.64b5d470.svg"
   },
   {
-    "revision": "a71a2bc9263490af2464039608f62255",
+    "revision": "3732f386c65cb191b5ded918850ba8fd",
     "url": "/relais-med/index.html"
   }
 ];
