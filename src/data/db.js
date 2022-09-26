@@ -266,6 +266,40 @@ const agentes = [
       },
     ],
   },
+  {
+    agente: "CECCM",
+    codigoPerfil: "37745",
+    agenteCCEE: "CECCM",
+    pontos: [
+      {
+        ponto: "RJCCAEENTR101",
+        descricao: "⠀",
+        fileName: "CECCM1",
+      },
+      {
+        ponto: "RJCCSSENTR101",
+        descricao: "⠀",
+        fileName: "CECCM2",
+      },
+      {
+        ponto: "RJECDMENTR101",
+        descricao: "⠀",
+        fileName: "CECCM3",
+      },
+    ],
+  },
+  {
+    agente: "CECCM ESPECIAL",
+    codigoPerfil: "39741",
+    agenteCCEE: "CECCM ESPECIAL",
+    pontos: [
+      {
+        ponto: "RJECIAENTR101",
+        descricao: "⠀",
+        fileName: "CECCMESP",
+      },
+    ],
+  },
 ];
 
 export default agentes;
