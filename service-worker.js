@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/relais-med/precache-manifest.f03fd5dc3c2678ff3d8febeecb7fc5b3.js"
+  "/relais-med/precache-manifest.d0dd5b1c3b4d1ba4265039bf40cc7734.js"
 );
 
 workbox.clientsClaim();
