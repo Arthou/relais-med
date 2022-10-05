@@ -21,17 +21,22 @@ export const firstDayNextGivenMonth = (date) => {
   return newDate;
 };
 
-export const lastDayGivenMonth = (date) => {
+export const lastDayPreviousGivenMonth = (date) => {
   const newDate = new Date(date.getFullYear(), date.getMonth(), 0);
   return newDate;
 };
 
+export const lastDayGivenMonth = (date) => {
+  const newDate = new Date(date.getFullYear(), date.getMonth() +1, 0);
+  return newDate;
+};
+
 export const startHour = () => {
-  return new Date(2022, 1, 1, 1, 0, 0);
+  return new Date(2022, 1, 1, 0, 0, 0);
 };
 
 export const endHour = () => {
-  return new Date(2022, 1, 1, 0, 0, 0);
+  return new Date(2022, 1, 1, 23, 0, 0);
 };
 
 export const hourString = (date) => {

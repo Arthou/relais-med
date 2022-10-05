@@ -4,7 +4,7 @@ import React, { useState, useEffect} from "react";
 import agentes from "../data/db";
 import DetailedMeasurementForm from "../DetailedMeasurementForm/DetailedMeasurementForm";
 import SimpleMeasurementForm from "../SimpleMeasurementForm/SimpleMeasurementForm";
-import { dateString, firstDayNextGivenMonth, hourString, lastDayGivenMonth } from "../utils/dateTime";
+import { dateString, firstDayNextGivenMonth, lastDayGivenMonth, hourString, lastDayPreviousGivenMonth } from "../utils/dateTime";
 import logoRelais from "./../logoRelais.png";
 
 const FormContainer = () => {
@@ -43,7 +43,7 @@ const FormContainer = () => {
         const href = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = href;
-        if (isFinal == true) {
+        if (isFinal === true) {
           showDetailedForm 
             ? link.setAttribute('download', 'Medições.zip') 
             : link.setAttribute('download', "MED_" + detailedValues.ponto.fileName + "_" + 
@@ -66,10 +66,10 @@ const FormContainer = () => {
   const postBodySimple = (isFinal) => {
     console.log(simpleValues);
     const startDate = dateString(simpleValues.date);
-    const endDate = dateString(firstDayNextGivenMonth(simpleValues.date));
+    const endDate = dateString(lastDayGivenMonth(simpleValues.date));
     const body = JSON.stringify({
-      startDate: startDate + "T01:00:00",
-      endDate: endDate + "T00:00:00",
+      startDate: startDate + "T00:00:00",
+      endDate: endDate + "T23:00:00",
       tipoMedicao: isFinal ? "FINAL" : "FALTANTES",
       infoAgente: agentes, //agentes.map((x) => x.pontos),
       simple: "true",
