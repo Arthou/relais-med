@@ -267,7 +267,7 @@ const agentes = [
     ],
   },
   {
-    agente: "CECCM",
+    agente: "Ed. Centro Cândido Mendes",
     codigoPerfil: "37745",
     agenteCCEE: "CECCM",
     pontos: [
@@ -289,7 +289,7 @@ const agentes = [
     ],
   },
   {
-    agente: "CECCM ESPECIAL",
+    agente: "Ed. Centro Cândido Mendes ESP.",
     codigoPerfil: "39741",
     agenteCCEE: "CECCM ESPECIAL",
     pontos: [
@@ -297,6 +297,42 @@ const agentes = [
         ponto: "RJECIAENTR101",
         descricao: "411",
         fileName: "CECCM411",
+      },
+    ],
+  },
+  {
+    agente: "CCN - CENTRO DE CONVENÇÕES",
+    codigoPerfil: "71544",
+    agenteCCEE: "CCN",
+    pontos: [
+      {
+        ponto: "RJCCNCENTR101",
+        descricao: "CCN",
+        fileName: "CCN",
+      },
+    ],
+  },
+  {
+    agente: "CCN - TORRE NORTE",
+    codigoPerfil: "23561",
+    agenteCCEE: "CCN - TORRE NORTE",
+    pontos: [
+      {
+        ponto: "RJTNCNENTR101",
+        descricao: "CCN TN",
+        fileName: "CCN_TN",
+      },
+    ],
+  },
+  {
+    agente: "RioCidadeNova ADM",
+    codigoPerfil: "81763",
+    agenteCCEE: "RCN",
+    pontos: [
+      {
+        ponto: "RJRICNENTR101",
+        descricao: "RCN",
+        fileName: "RCN",
       },
     ],
   },
