@@ -300,8 +300,8 @@ const agentes = [
       },
     ],
   },
-  {
-    agente: "CCN - CENTRO DE CONVENÇÕES",
+/*  {
+    agente: "CCN - Centro de Convenções",
     codigoPerfil: "71544",
     agenteCCEE: "CCN",
     pontos: [
@@ -313,7 +313,7 @@ const agentes = [
     ],
   },
   {
-    agente: "CCN - TORRE NORTE",
+    agente: "CCN - Torre Norte",
     codigoPerfil: "23561",
     agenteCCEE: "CCN - TORRE NORTE",
     pontos: [
@@ -335,7 +335,7 @@ const agentes = [
         fileName: "RCN",
       },
     ],
-  },
+  },*/
 ];
 
 export default agentes;
