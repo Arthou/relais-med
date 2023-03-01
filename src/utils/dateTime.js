@@ -1,8 +1,8 @@
 const firstDayPreviousMonth = () => {
   var date = new Date();
   var month = date.getMonth();
-  var year = month === 1 ? date.getFullYear() - 1 : date.getFullYear();
-  return new Date(year, month === 1 ? 11 : month - 1, 1);
+  var year = month === 0 ? date.getFullYear() - 1 : date.getFullYear();
+  return new Date(year, month === 0 ? 11 : month - 1, 1);
 };
 
 export const midnightPreviousToCurrentMonth = () => {
