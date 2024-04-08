@@ -336,6 +336,23 @@ const agentes = [
       },
     ],
   },
+  {
+    agente: "AMOEDO",
+    codigoPerfil: "100558",
+    agenteCCEE: "AMOEDO",
+    pontos: [
+      {
+        ponto: "RJMOAMENTR101",
+        descricao: "PT1",
+        fileName: "PT1",
+      },
+      {
+        ponto: "RJAONRENTR101",
+        descricao: "PT2",
+        fileName: "PT2",
+      },
+    ],
+  },
 ];
 
 export default agentes;
